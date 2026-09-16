@@ -16,6 +16,7 @@ use Omeka\Module\AbstractModule;
 
 class Module extends AbstractModule
 {
+    private const BASE_URL_SETTING = 'oidc_base_url';
     private const BASE_URL_WARNING = 'OIDC: Public base URL is not set. OIDC sign-in is disabled until it is configured in the module settings.';
 
     public function init(ModuleManager $moduleManager)
@@ -313,7 +314,9 @@ class Module extends AbstractModule
     ): bool
     {
         $settings = $services->get('Omeka\Settings');
-        if ($settings->get(Settings::BASE_URL)) {
+        // The module's Composer autoloader is not initialized while Omeka runs
+        // an upgrade, so this path must not depend on Oidc\Settings.
+        if ($settings->get(self::BASE_URL_SETTING)) {
             return false;
         }
 
