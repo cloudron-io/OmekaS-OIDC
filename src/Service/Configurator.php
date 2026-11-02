@@ -25,6 +25,7 @@ class Configurator
         'claims_display'      => S::CLAIMS_DISPLAY,
         'link_existing_by_email' => S::LINK_BY_EMAIL,
         'role_source'         => S::ROLE_SOURCE,
+        'login_label'         => S::LOGIN_LABEL,
     ];
 
     private const ALLOWED_ROLES = [
@@ -170,6 +171,11 @@ class Configurator
         $linkByEmail = $this->effective($data, S::LINK_BY_EMAIL);
         if (!is_bool($linkByEmail)) {
             throw new InvalidConfigurationException('link_existing_by_email must be a boolean.');
+        }
+
+        $loginLabel = $this->effective($data, S::LOGIN_LABEL);
+        if (!is_string($loginLabel) || trim($loginLabel) === '') {
+            throw new InvalidConfigurationException('login_label must be a non-empty string.');
         }
 
         $display = $this->effective($data, S::CLAIMS_DISPLAY);

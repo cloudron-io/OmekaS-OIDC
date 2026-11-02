@@ -18,6 +18,7 @@ final class Settings
     const CLAIMS_DISPLAY      = 'oidc_claims_display';
     const LINK_BY_EMAIL       = 'oidc_link_existing_by_email';
     const ROLE_SOURCE         = 'oidc_role_source';
+    const LOGIN_LABEL         = 'oidc_login_label';
 
     /** Roles are derived from the IdP claims on every login. */
     const ROLE_SOURCE_CLAIMS = 'claims';
@@ -46,6 +47,7 @@ final class Settings
         self::CLAIMS_DISPLAY,
         self::LINK_BY_EMAIL,
         self::ROLE_SOURCE,
+        self::LOGIN_LABEL,
     ];
 
     const DEFAULTS = [
@@ -62,6 +64,7 @@ final class Settings
         self::CLAIMS_DISPLAY     => [],
         self::LINK_BY_EMAIL      => false,
         self::ROLE_SOURCE        => self::ROLE_SOURCE_CLAIMS,
+        self::LOGIN_LABEL        => 'Log in with CILogon',
     ];
 
     private function __construct()
