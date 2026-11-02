@@ -17,6 +17,18 @@ final class Settings
     const REDIRECT            = 'oidc_redirect';
     const CLAIMS_DISPLAY      = 'oidc_claims_display';
     const LINK_BY_EMAIL       = 'oidc_link_existing_by_email';
+    const ROLE_SOURCE         = 'oidc_role_source';
+
+    /** Roles are derived from the IdP claims on every login. */
+    const ROLE_SOURCE_CLAIMS = 'claims';
+
+    /** Roles are managed in Omeka; claims only seed the role of a new account. */
+    const ROLE_SOURCE_LOCAL = 'local';
+
+    const ROLE_SOURCES = [
+        self::ROLE_SOURCE_CLAIMS,
+        self::ROLE_SOURCE_LOCAL,
+    ];
 
     const KEYS = [
         self::IDP_DISCOVERY_URL,
@@ -33,6 +45,7 @@ final class Settings
         self::REDIRECT,
         self::CLAIMS_DISPLAY,
         self::LINK_BY_EMAIL,
+        self::ROLE_SOURCE,
     ];
 
     const DEFAULTS = [
@@ -48,6 +61,7 @@ final class Settings
         self::REDIRECT           => 'home',
         self::CLAIMS_DISPLAY     => [],
         self::LINK_BY_EMAIL      => false,
+        self::ROLE_SOURCE        => self::ROLE_SOURCE_CLAIMS,
     ];
 
     private function __construct()
